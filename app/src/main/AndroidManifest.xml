@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://android.com">
+<manifest xmlns:android="http://android.com"
+    package="com.example.sbsoverlay">
 
-    <!-- 申请必要的基本权限 -->
+    <!-- 基础网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    
+    <!-- 前台服务权限（Android 9+ 要求） -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 针对 Android 14+ 的具体前台服务类型权限（此处以 specialUse 为例，请根据实际业务调整） -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
     <application
         android:allowBackup="true"
@@ -22,10 +27,12 @@
         </activity>
 
         <!-- 2. 后台服务 Service 配置 -->
+        <!-- 增加了 foregroundServiceType 以适配 Android 14+ -->
         <service
             android:name=".SbsService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="specialUse" />
 
     </application>
 
