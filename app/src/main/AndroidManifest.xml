@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    ">
+<manifest xmlns:android="http://android.com">
 
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 申请必要的基本权限（如后台服务和网络，如不需要可留空） -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
 
     <application
         android:allowBackup="true"
-        android:label="SBS Overlay"
-        android:supportsRtl="true"
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:label="SbsOverlay"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 
+        <!-- 1. 主入口 Activity 配置 -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -21,10 +21,12 @@
             </intent-filter>
         </activity>
 
+        <!-- 2. 后台服务 Service 配置 -->
         <service
             android:name=".SbsService"
             android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="mediaProjection" />
+            android:exported="false" />
+
     </application>
+
 </manifest>
